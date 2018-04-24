@@ -1,1 +1,1 @@
-# ArchitectureForIoTandCloudComputing
+# IoT and Cloud Computing
