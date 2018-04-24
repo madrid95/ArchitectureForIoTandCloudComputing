@@ -1,0 +1,3 @@
+var.sockets.udp.echo
+var.sockets.udp.messwerte
+var.sockets.udp.time
