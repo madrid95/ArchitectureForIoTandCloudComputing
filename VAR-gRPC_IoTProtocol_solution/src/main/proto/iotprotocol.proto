@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "io.dama.vs.iotprotocol";
+package iotprotocol;
+
+service IoTProtocol {
+  rpc SwitchOff(empty) returns (empty) {}
+  rpc GetObservation(empty) returns (Observation) {}  
+  rpc StreamObservations(empty) returns (stream Observation) {}
+}
+
+message empty {}
+message Observation {
+  enum Type {
+    TEMP = 0;
+    HUMIDITY = 1;
+    BRIGHTNESS = 2;
+  }
+  Type type = 1;
+  float value = 2;
+}  
