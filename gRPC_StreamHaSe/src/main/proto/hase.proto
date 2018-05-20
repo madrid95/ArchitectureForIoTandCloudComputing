@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_package = "io.dama.vs.hase";
+package hase;
+
+message Sensor {
+    int32 sensorID = 1;
+}
+
+message Telegram {
+	Sensor sensor = 1;                // questionable: part of Request
+	int32 continuousNumber = 2;       // questionable: gRPC on top of TCP (no need to order)
+	bool hail = 3;
+	int32 occurrencesPL = 4;
+	int32 occurrencesGS = 5;
+	int32 occurrencesGR = 6;
+	bool microphone = 7;
+	int32 microphoneCapacity = 8;
+}
+
+message Empty {
+}
+
+message Boolean {
+    bool result = 1;
+}
+    
+service HaSeService {
+    rpc getSensorId(Empty) returns (Sensor);
+	rpc switchOff(Sensor) returns (Boolean);
+    rpc getObservation(Sensor) returns(Telegram);
+    rpc streamObservations(Sensor) returns(stream Telegram);
+}
